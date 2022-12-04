@@ -1,0 +1,234 @@
+/****************************************
+  FONTS - FONTES INSTALADAS
+****************************************/
+@font-face {
+  font-family: "Roboto-Regular";
+  src: url(/fonts/Roboto-Regular.ttf);
+}
+
+@font-face {
+  font-family: "Roboto-Medium";
+  src: url(/fonts/Roboto-Medium.ttf);
+}
+
+/****************************************
+  CSS - RESTANTE CSS
+****************************************/
+
+.mytext-h1 {
+  font-family: "Roboto-Medium" !important;
+  color: #202f41;
+  font-size: 3vw;
+}
+
+@media (max-width: 991px) {
+  .mytext-h1 {
+    font-size: 5vw;
+  }
+}
+
+.mytext {
+  font-family: "Roboto-Regular" !important;
+  color: #202f41;
+  font-size: 1.5vw;
+}
+
+@media (max-width: 991px) {
+  .mytext {
+    font-size: 4vw;
+  }
+}
+
+.mytext2 {
+  font-family: "Roboto-Regular" !important;
+  color: #202f41;
+  font-size: 1.1vw;
+}
+
+@media (max-width: 991px) {
+  .mytext2 {
+    font-size: 3vw;
+  }
+}
+
+.mytext2 .link-danger {
+  color: red !important;
+}
+
+.text-black {
+  color: #202f41;
+}
+
+a.bold {
+  font-weight: bold;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #08abf7;
+  border-color: #08abf7;
+  box-shadow: 0.325vw 0.325vw 0.325vw rgb(0 0 0 / 20%);
+  border-radius: 0.6rem;
+}
+
+.btn-warning {
+  color: #212529;
+  background-color: #ffef00;
+  border-color: #ffef00;
+  box-shadow: 0.325vw 0.325vw 0.325vw rgb(0 0 0 / 20%);
+}
+
+.btn-warning:hover {
+  color: #212529;
+  background-color: #e0a800;
+  border-color: #d39e00;
+  box-shadow: 0.325vw 0.325vw 0.325vw rgb(0 0 0 / 20%);
+}
+
+
+.form-control-lg {
+  height: calc(1.5em + 1rem + 2px);
+  padding: 0.5rem 1rem;
+  font-size: 1.25rem;
+  line-height: 0.1rem;
+  border-radius: 0.6rem;
+  box-shadow: 0.325vw 0.325vw 0.325vw rgb(0 0 0 / 20%);
+}
+
+.navbar-dark .nav-item .nav-link {
+  color: #fff;
+}
+
+.botao {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+
+.color-background {
+  background: rgb(0, 168, 255);
+  background: linear-gradient(90deg, rgb(0, 168, 255) 0%, rgb(255, 239, 0) 100%);
+}
+
+.color-background2 {
+  background: rgb(255, 239, 0);
+  background: linear-gradient(90deg, rgb(255, 239, 0) 0%, rgb(0, 168, 255) 100%);
+}
+
+.cover {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(90deg, rgb(0, 168, 255) 0%, rgb(255, 239, 0) 100%);
+  top: 0;
+  left: -100vw;
+  z-index: 1000;
+}
+
+.transition.slide .cover1 {
+  background: linear-gradient(90deg, rgb(255, 239, 0) 0%, rgb(0, 168, 255) 100%);
+  animation: slide 0.5s ease-in-out forwards;
+  animation-delay: 0.5s;
+}
+
+.center-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+}
+
+.stuck-bottom {
+  position: fixed;
+  bottom: 0px;
+}
+
+.stuck-bottom-text {
+  font-family: "Roboto-Regular" !important;
+  font-size: 1vw;
+  color: #fff;
+  text-align: center;
+}
+
+@media (max-width: 991px) {
+  .stuck-bottom-text {
+    font-size: 2vw;
+    text-align: center;
+    align-items: center;
+  }
+}
+
+.fa-li {
+  position: relative;
+  left: 0;
+}
+
+.style-border {
+  box-shadow: 0 12px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  outline-style: solid;
+  outline-color: #202f41;
+  outline-width: 4px;
+  border-radius: 2em;
+}
+
+.style-border2 {
+  box-shadow: 0 12px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  outline-style: solid;
+  outline-color: #202f41;
+  outline-width: 4px;
+}
+
+.style-border3 {
+  box-shadow: 0 12px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  outline-style: solid;
+  outline-color: #202f41;
+  outline-width: 4px;
+  border-radius: 0.5em;
+}
+
+.style-border4 {
+  box-shadow: 0 12px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  outline-style: solid;
+  outline-color: #202f41;
+  outline-width: 2px;
+  border-radius: 0.5em;
+}
+
+.icon-group-page {
+  width: 30vw;
+}
+
+.card-group {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.card-img {
+  width: 95%;
+  height: 95%;
+}
+
+/*navbar*/
+a {
+  font-size: 14px;
+  font-family: "Roboto-Regular" !important;
+}
+
+.superNav {
+  font-size: 13px;
+}
+
+.form-control {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+@media screen and (max-width:540px) {
+  .centerOnMobile {
+    text-align: center
+  }
+}
+
+.carousel-control-prev {
+  color: rgb(255, 239, 0);
+
+}
