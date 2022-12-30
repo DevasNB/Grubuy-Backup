@@ -1,38 +1,39 @@
 <?php
-    
-    class Register extends Database {
 
-        protected function setUser($name, $email, $password) {
-            $stmt = $this->connect()->prepare('INSERT INTO users (userName, userEmail, userPassword) VALUES (?, ?, ?);');
+class Register extends Database
+{
 
-            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+    protected function setUser($name, $email, $password)
+    {
+        $stmt = $this->connect()->prepare('INSERT INTO users (userName, userEmail, userPassword) VALUES (?, ?, ?);');
 
-            if(!$stmt->execute(array($name, $email, $hashedPassword))) {
-                $stmt = null;
-                header("location: ../register.php?error=stmtfailed");
-                exit();
-            }
-            
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+        if (!$stmt->execute(array($name, $email, $hashedPassword))) {
             $stmt = null;
+            header("location: ../register.php?error=stmtfailed");
+            exit();
         }
 
-        protected function checkUser($email) {
-            $stmt = $this->connect()->prepare('SELECT userEmail FROM users WHERE userEmail = ?;');
-
-            if(!$stmt->execute(array($email))) {
-                $stmt = null;
-                header("location: ../register.php?error=stmtfailed");
-                exit();
-            }
-
-            $resultCheck = false;
-            if($stmt->rowCount() > 0) {
-                $resultCheck = false;
-            }
-            else {
-                $resultCheck = true;
-            }
-            return $resultCheck;
-        }
+        $stmt = null;
     }
-?>
+
+    protected function checkUser($email)
+    {
+        $stmt = $this->connect()->prepare('SELECT userEmail FROM users WHERE userEmail = ?;');
+
+        if (!$stmt->execute(array($email))) {
+            $stmt = null;
+            header("location: ../register.php?error=stmtfailed");
+            exit();
+        }
+
+        $resultCheck = false;
+        if ($stmt->rowCount() > 0) {
+            $resultCheck = false;
+        } else {
+            $resultCheck = true;
+        }
+        return $resultCheck;
+    }
+}

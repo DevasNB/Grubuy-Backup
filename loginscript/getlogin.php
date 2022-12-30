@@ -16,8 +16,8 @@
 
         //running errors and handlers
         $login->LoginUser();
-
+        
         //Going to back to front page
-        header("location: ../index.php?error=none");
+        header("location: ../index.php?welcome");
     }
 ?>
