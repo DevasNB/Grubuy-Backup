@@ -2,10 +2,6 @@
 include 'getlogin.php';
 include './loginscript/dbaccess.php';
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 session_start();
 
 if (isset($_SESSION["user_Name"])) {
@@ -36,7 +32,7 @@ if (isset($_SESSION["user_Name"])) {
     ?>
 
     <div class="container px-4 mt-4">
-        <form action="/newproductsscript/new_addnewproduct.php" method="POST" enctype="multipart/form-data">
+        <form action="./edit_delete_productscript/changeproduct.php" method="POST" enctype="multipart/form-data">
             <div class="row">
                 <?php
 
@@ -53,19 +49,34 @@ if (isset($_SESSION["user_Name"])) {
                     }
                 }
 
+                /*function teste($productID)
+                {
+                    global $conn;
+
+
+                    $sql = "SELECT * FROM products WHERE productID = $productID";
+                    $result = $conn->query($sql);
+
+                    return $result;
+                }
+
+                var_dump(teste(1));
+                die;*/
+
                 $myproduct = new editmyproduct();
 
                 $productID = isset($_POST['productID']) ? $_POST['productID'] : '';
                 $product_edit = $myproduct->pickProduct($productID);
 
                 echo '
+                <input name="productID" type="hidden" value="' . $product_edit['productID'] . '" readonly/>
                 <div class="col-xl-4">
                     <!-- Profile picture card-->
                     <div class="card style-border4 mb-4 mb-xl-0">
                         <div class="card-header">Product Picture</div>
                         <div class="card-body text-center">
                             <!-- Profile picture image-->
-                            <img class="card-img-top card-image-size" src="/uploads/products/'.$product_edit['productImage'].'" alt="">
+                            <img class="card-img-top card-image-size3" src="/uploads/products/' . $product_edit['productImage'] . '" alt="">
                             <!-- Profile picture help block-->
                             <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
                             <!-- Profile picture upload button -->

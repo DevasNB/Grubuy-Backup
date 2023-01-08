@@ -30,7 +30,7 @@ if (isset($_SESSION["user_Name"])) {
     <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<body>
+<body class="color-background2">
     <?php
     include 'header.php';
     ?>
@@ -54,46 +54,57 @@ if (isset($_SESSION["user_Name"])) {
 
     $productID = isset($_POST['productID']) ? $_POST['productID'] : '';
     $product_edit = $myproduct->pickProduct($productID);
+    
 
+    class userproduct extends Database
+    {
+        public function pickUser($userID)
+        {
+            $stmt = $this->connect()->prepare('SELECT userName FROM users WHERE userID = ?;');
+            $stmt->execute(array($userID));
+
+            $euser = $stmt->fetch(PDO::FETCH_ASSOC);
+            
+            return $euser;
+        }
+    }
+
+    $creator = new userproduct();
+
+    $userID = $product_edit["productCreator"];
+    $username = $creator->pickUser($userID);
+    
     echo '
-    <div class="container">
-        <div class="row d-flex justify-content-center">
-            <div class="col-md-12">
-                <div class="card style-border3 m-5">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="images p-3">
-                                <div class="text-center p-4"> <img id="main-image" src="./uploads/products/'.$product_edit['productImage'].'" width="500" /> </div>
-                                <div class="thumbnail text-center"> <img onclick="change_image(this)" src="https://i.imgur.com/Rx7uKd0.jpg" width="70"> <img onclick="change_image(this)" src="https://i.imgur.com/Dhebu4F.jpg" width="70"> </div>
-                            </div>
+    <section class="py-5">
+        <div class="container product style-border3 my-5">
+            <form action="./cartscript/getcart.php" method="POST">
+                <div class="row gx-4 gx-lg-5 align-items-center">
+                    <div class="col-md-6">
+                        <img class="card-img-top card-image-size2 style-border5 ms-1 mt-3 mb-3" src="./uploads/products/' . $product_edit['productImage'] . '" alt="..." />
+                    </div>
+                    <div class="col-md-6">
+                        <h4 class="mb-1">Seller: <a href="#">' . $username["userName"] . '</a></h4>
+                        <h1 class="display-5 fw-bolder">' . $product_edit["productName"] . '</h1>
+                        <div class="fs-5 mb-5">
+                            <!--<span class="text-decoration-line-through">$45.00</span>-->
+                            <span>' . $product_edit["productPrice"] . ' €</span>
                         </div>
-                        <div class="col-md-6">
-                            <div class="product p-4">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="d-flex align-items-center">
-                                        <a class="text-warning" href="products.php"><i class="bi bi-arrow-left"></i><span class="ml-1"> Back</span></a>
-                                    </div>
-                                    <i class="fa fa-shopping-cart text-muted"></i>
-                                </div>
-                                <div class="mt-4 mb-3"> <span class="text-uppercase text-muted brand">Orianz</span>
-                                    <h5 class="text-uppercase">Mens slim fit t-shirt</h5>
-                                    <div class="price d-flex flex-row align-items-center"> <span class="act-price">$20</span>
-                                        <div class="ml-2"> <small class="dis-price">$59</small> <span>40% OFF</span> </div>
-                                    </div>
-                                </div>
-                                <p class="about">Shop from a wide range of t-shirt from orianz. Pefect for your everyday use, you could pair it with a stylish pair of jeans or trousers complete the look.</p>
-                                <div class="sizes mt-5">
-                                    <h6 class="text-uppercase">Size</h6> <label class="radio"> <input type="radio" name="size" value="S" checked> <span>S</span> </label> <label class="radio"> <input type="radio" name="size" value="M"> <span>M</span> </label> <label class="radio"> <input type="radio" name="size" value="L"> <span>L</span> </label> <label class="radio"> <input type="radio" name="size" value="XL"> <span>XL</span> </label> <label class="radio"> <input type="radio" name="size" value="XXL"> <span>XXL</span> </label>
-                                </div>
-                                <div class="cart mt-4 align-items-center"> <button class="btn btn-danger text-uppercase mr-2 px-4">Add to cart</button> <i class="fa fa-heart text-muted"></i> <i class="fa fa-share-alt text-muted"></i> </div>
-                            </div>
+                        <p class="lead">' . $product_edit["productDescription"] . '</p>
+                        <div class="d-flex">
+                            <input name="productID" type="hidden" value="' . $productID. '" readonly/>
+                            <input name="productPrice" type="hidden" value="' . $product_edit["productPrice"] . '" readonly/>
+                            <input class="form-control text-center me-3" name="productQuantity" type="num" value="1" max="'. $product_edit["productQuantity"] .'" style="max-width: 3rem" />
+                                
+                            <button class="btn btn-warning me-3" name="submit" type="submit">Add to Cart</button>
+                            <a href="./products.php" class="btn btn-danger">Go Back</a>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
-    </div>';
-?>
+    </section>';
+
+    ?>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 

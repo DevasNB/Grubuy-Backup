@@ -18,36 +18,37 @@ class picproducts extends Database
 }
 
 $product = new picproducts();
-                $numberproducts = $product->pickProducts();
+$numberproducts = $product->pickProducts();
 
-                function time_elapsed_string($datetime, $full = false) {
-                    $now = new DateTime;
-                    $ago = new DateTime($datetime);
-                    $diff = $now->diff($ago);
-                
-                    $diff->w = floor($diff->d / 7);
-                    $diff->d -= $diff->w * 7;
-                
-                    $string = array(
-                        'y' => 'year',
-                        'm' => 'month',
-                        'w' => 'week',
-                        'd' => 'day',
-                        'h' => 'hour',
-                        'i' => 'minute',
-                        's' => 'second',
-                    );
-                    foreach ($string as $k => &$v) {
-                        if ($diff->$k) {
-                            $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
-                        } else {
-                            unset($string[$k]);
-                        }
-                    }
-                
-                    if (!$full) $string = array_slice($string, 0, 1);
-                    return $string ? implode(', ', $string) . ' ago' : 'just now';
-                }
+function time_elapsed_string($datetime, $full = false)
+{
+    $now = new DateTime;
+    $ago = new DateTime($datetime);
+    $diff = $now->diff($ago);
+
+    $diff->w = floor($diff->d / 7);
+    $diff->d -= $diff->w * 7;
+
+    $string = array(
+        'y' => 'year',
+        'm' => 'month',
+        'w' => 'week',
+        'd' => 'day',
+        'h' => 'hour',
+        'i' => 'minute',
+        's' => 'second',
+    );
+    foreach ($string as $k => &$v) {
+        if ($diff->$k) {
+            $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
+        } else {
+            unset($string[$k]);
+        }
+    }
+
+    if (!$full) $string = array_slice($string, 0, 1);
+    return $string ? implode(', ', $string) . ' ago' : 'just now';
+}
 
 
 ?>
@@ -74,42 +75,48 @@ $product = new picproducts();
 
     <section id="myproducts">
         <div class="container mt-5 text-center">
-            <h1 class="mytext-h1 text-center mt-5 mb-2 p-2">Product <span class="text-warning">Store</span></h1>
+            <div class="bg-white style-border4">
+                <h1 class="mytext-h1 text-center m-2 p-2">Product <span class="text-warning">Store</span></h1>
+            </div>
+            
             <div class="row">
                 <?php
 
                 for ($i = 0; $i < count($numberproducts); $i++) {
 
                     $productsID = $numberproducts[$i]['productID'];
-                    $_SESSION['varID'] = $productsID;
 
                     $description = $numberproducts[$i]['productDescription'];
                     $description = substr($description, 0, 100) . '...';
 
-                        echo '
+                    echo '
                         <div class="col-md-3 mt-3">
                             <div class="card style-border4">
                                 <img src="/uploads/products/' . $numberproducts[$i]['productImage'] . '" class="card-img-top card-image-size" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title text-primary">' . $numberproducts[$i]['productName'] . '</h5>
-                                    <span class="badge rounded-pill bg-warning">' . $numberproducts[$i]['productPrice'] . ' €</span>
+                                    <span class="badge bg-warning">' . $numberproducts[$i]['productPrice'] . ' €</span>
                                     <p class="card-text">' . $description . '</p>
                                     <div class="d-flex row align-items-center">
-                                        <div class="d-flex align-items-start col-12 mb-2">
-                                            <button type="submit" name="action" value="productpage" class="btn btn-warning btn-size"><i class="bi bi-basket"></i> Product Page</button>
-                                        </div>
-                                        <div class="d-flex align-items-start col-12">
+                                        <form action="./productpage.php" method="post">
+                                            <div class="d-flex align-items-start col-12 mb-2">
+                                                <input name="productID" type="hidden" value="' . $productsID . '" readonly/>
+                                                <button type="submit" name="action" class="btn btn-warning btn-size"><i class="bi bi-basket"></i> Product Page</button>
+                                            </div>
+                                        </form>
+                                        
+                                        <!--<div class="d-flex align-items-start col-12">
                                             <button type="submit" name="action" value="addtocart" class="btn btn-primary crazy btn-size"><i class="bi bi-basket"></i> Add to Cart</button>
-                                        </div>
+                                        </div>-->
                                     </div>
                                 </div>
                                 <div class="card-footer">
-                                    <small class="text-muted">Posted on '.time_elapsed_string($numberproducts[$i]['productDate']) .'</small>
+                                    <small class="text-muted">Posted on ' . time_elapsed_string($numberproducts[$i]['productDate']) . '</small>
                                 </div>
                             </div>
                         </div>
                         ';
-                } 
+                }
                 ?>
 
             </div>

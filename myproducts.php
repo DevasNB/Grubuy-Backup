@@ -54,16 +54,18 @@ class picmyproducts extends Database
 
     <section id="myproducts">
         <div class="container mt-5 text-center">
-            <h1 class="mytext-h1 text-center mt-5 mb-2 p-2">My <span class="text-warning">Products</span></h1>
+            <div class="bg-white style-border4">
+                <h1 class="mytext-h1 text-center m-2 p-2">My <span class="text-warning">Products</span></h1>
+            </div>
             <div class="row">
                 <div class="col-md-3 mt-3">
                     <a href="addnewproduct.php">
                         <div class="card style-border4">
-                            <img src="/imagens/image icons/addproduct_icon.png" class="card-img-top card-image-size">
-                            <div class="card-body">
+                            <img src="/imagens/image icons/addproduct_icon.png" class="card-img-top card-image-size3">
+                            <!--<div class="card-body">
                                 <h5 class="card-title text-uppercase">Add New Product</h5>
                                 <p class="card-text"></p>
-                            </div>
+                            </div>-->
                         </div>
                     </a>
                 </div>
@@ -84,29 +86,28 @@ class picmyproducts extends Database
                     echo '<div class="col-md-3 mt-3">
                             <div class="card style-border4">
                             <img src="/uploads/products/' . $numberproducts[$i]['productImage'] . '" class="card-img-top card-image-size" alt="...">
-                            <div class="card-body">
+                              <div class="card-body">
                                 <h5 class="card-title text-primary">' . $numberproducts[$i]['productName'] . '</h5>
-                                <span class="badge rounded-pill bg-warning">' . $numberproducts[$i]['productPrice'] . ' €</span>
-                                <p class="card-text">' . $description . '</p>
+                                <h4 class="badge bg-warning">' . $numberproducts[$i]['productPrice'] . ' €</h4>
                                 <div class="d-flex row align-items-center">
-                                <div class="col-12 mb-2">
-                                <form action="./productpage.php" method="post">
-                                    <input name="productID" type="hidden" value="' . $productsID . '" readonly/>
-                                    <button type="submit" name="action" class="btn btn-warning btn-size"><i class="bi bi-basket"></i> Product Page</button>
-                                </form>
-                                </div>
-                                <div class="col-6">
-                                    <form action="./editproduct.php" method="post">
-                                    <input name="productID" type="hidden" value="' . $productsID . '" readonly/>
-                                    <button type="submit" name="action" class="btn btn-primary btn-size"><i class="bi bi-pencil"></i> Edit</a>
+                                    <div class="col-12 mb-2">
+                                    <form action="./productpage.php" method="post">
+                                        <input name="productID" type="hidden" value="' . $productsID . '" readonly/>
+                                        <button type="submit" name="action" class="btn btn-warning btn-size"><i class="bi bi-basket"></i> Product Page</button>
                                     </form>
-                                </div>
-                                
-                                <div class="col-6">
-                                    <form action="./edit_delete_productscript/delete_product.php" method="post">
-                                    <button type="submit" name="action" value="delete" class="btn btn-danger btn-size"><i class="bi bi-trash-fill"></i> Delete</button>
-                                    </form>
-                                </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <form action="./editproduct.php" method="post">
+                                        <input name="productID" type="hidden" value="' . $productsID . '" readonly/>
+                                        <button type="submit" name="action" class="btn btn-primary btn-size"><i class="bi bi-pencil"></i> Edit</a>
+                                        </form>
+                                    </div>
+                                    
+                                    <div class="col-6">
+                                        <form action="./edit_delete_productscript/deleteproduct.php" method="post">
+                                        <button type="submit" name="action" value="delete" class="btn btn-danger btn-size"><i class="bi bi-trash-fill"></i> Delete</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                             </div>

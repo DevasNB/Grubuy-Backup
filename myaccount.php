@@ -41,11 +41,7 @@ if (isset($_SESSION["user_Name"])) {
                     <div class="card-header">Profile Picture</div>
                     <div class="card-body text-center">
                         <!-- Profile picture image-->
-                        <img class="card-img-top card-image-size" src="/imagens/image icons/person_icon.png" alt="">
-                        <!-- Profile picture help block-->
-                        <!--<div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>-->
-                        <!-- Profile picture upload button -->
-                        <!--<button class="btn btn-primary" type="button">Upload new image</button> -->
+                        <img class="card-img-top card-image-size" src="./uploads/users/'.$_SESSION["user_Image"].'" alt="">
                     </div>
                 </div>
             </div>

@@ -12,13 +12,14 @@ if (isset($_POST["submit"])) {
     $myproduct = new Database();
     $drena = $myproduct->connect();
 
-    $productID = $_POST['productID'];
+    $prodID = $_POST['prodID'];
 
-    $stmt = $drena->prepare('DELETE FROM products WHERE productID = ?;');
-    $stmt->execute(array($productID));
+    $stmt = $drena->prepare('DELETE FROM cart WHERE prodID = ?;');
+    $stmt->execute(array($prodID));
     
     $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
     
-    header("location: ../myproducts.php?error=productdeleted");
+    header("location: ../mycart.php?error=productincartdeleted");
+
 } 
 ?>

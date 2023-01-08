@@ -61,7 +61,7 @@ use LDAP\Result;
 
         private function invalidName() {
             $result = false;
-            if(!preg_match("/^[a-zA-Z]*$/", $this->name)) {
+            if(!preg_match("/^[a-zA-Z\s\p{L}]*$/u", $this->name)) {
                 $result = false;
             }
             else {

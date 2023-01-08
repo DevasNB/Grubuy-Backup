@@ -1,3 +1,7 @@
+<?php
+include 'getlogin.php';
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,7 +23,7 @@
     ?>
     <section id="about">
         <div class="container mt-5">
-            <div class="card style-border text-white m-md-5 m-sm-3">
+            <div class="bg-white style-border text-white m-md-5 m-sm-3">
                 <div class="card-body p-md-3">
                     <div class="row justify-content-center">
                         <h1 class="mytext-h1 text-center m-2 p-2">About <span class="text-warning">Page</span></h1>

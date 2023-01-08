@@ -16,12 +16,12 @@
 <body>
 	<nav class="navbar navbar-expand-lg bg-white sticky-top navbar-light p-3 style-border2">
 		<div class="container-fluid">
-			<img src="/imagens/grubuy5.png" width="80px" href="index.php">
+			<img class="me-5" src="/imagens/grubuy5.png" width="80px" href="index.php">
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class=" collapse navbar-collapse" id="navbarNavDropdown">
-				<ul class="navbar-nav ms-auto">
+				<ul class="navbar-nav">
 					<li class="nav-item">
 						<a class="nav-link mx-2 text-uppercase bold active" aria-current="page" href="index.php">Home</a>
 					</li>
@@ -35,14 +35,7 @@
 						<a class="nav-link mx-2 text-uppercase bold" href="about.php">About</a>
 					</li>
 				</ul>
-				<form class="form-inline ms-auto">
-					<div class="input-group style-border4">
-						<div class="input-group-prepend">
-							<span class="input-group-text" id="basic-addon1"><embed src="/imagens/icons/search.svg" /></span>
-						</div>
-						<input type="text" class="form-control style-border4" placeholder="Products, users, groups" aria-label="Username" aria-describedby="basic-addon1">
-					</div>
-				</form>
+				
 				<ul class="navbar-nav ms-auto">
 					<?php
 					if (isset($_SESSION["user_Name"])) {
@@ -58,18 +51,18 @@
 								</ul>
 							  </li>		
 							  <li class="nav-item">
-								<a class="nav-link mx-2 text-uppercase" href="mycart.php"><i class="fa-solid fa-cart-shopping me-1"></i> Cart</a>
+								<a class="nav-link mx-2 text-uppercase bold" href="mycart.php"><i class="fa-solid fa-cart-shopping me-1"></i> Cart</a>
 							  </li>
 							  <li class="nav-item">
-								<a class="nav-link mx-2 text-uppercase" href="login.php"><i class="fa-solid fa-circle-user me-1"></i>Wallet</a>
+								<a class="nav-link mx-2 text-uppercase bold" href="wallet.php"><i class="fa-solid fa-circle-user me-1"></i>Wallet</a>
 							  </li>';
 					} 
 					else {
 						echo '<li class="nav-item">
-								<a class="nav-link mx-2 text-uppercase" href="login.php"><i class="fa-solid fa-cart-shopping me-1"></i> Cart</a>
+								<a class="nav-link mx-2 text-uppercase bold" href="login.php"><i class="fa-solid fa-cart-shopping me-1"></i> Cart</a>
 					  		  </li>
 							  <li class="nav-item">
-								<a class="nav-link mx-2 text-uppercase" href="login.php"><i class="fa-solid fa-circle-user me-1"></i>Wallet</a>
+								<a class="nav-link mx-2 text-uppercase bold" href="login.php"><i class="fa-solid fa-circle-user me-1"></i>Wallet</a>
 							  </li>
 						      <li class="nav-item">
 								<a class="nav-link mx-2 text-uppercase bold" href="login.php"><i class="fa-solid fa-circle-user me-1"></i> Login</a>

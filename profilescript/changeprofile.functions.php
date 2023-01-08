@@ -12,5 +12,15 @@ class SendProfile extends Database
             header("location: ../editprofile.php?error=stmtfailed");
             exit();
         }
+        $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        session_start();
+        $_SESSION["user_Website"] = $user[0]["userWebsite"];
+        $_SESSION["user_Location"] = $user[0]["userLocation"];
+        $_SESSION["user_Phone"] = $user[0]["userPhone"];
+        $_SESSION["user_Birthday"] = $user[0]["userBirtday"];
+        $_SESSION["user_Image"] = $user[0]["userImage"];
     }
+
+    
 }

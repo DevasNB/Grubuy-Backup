@@ -13,6 +13,7 @@ session_start();
 
     <link rel="shortcut icon" type="image/x-icon" href="/imagens/grubuy5.png" />
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/style.css">
 </head>
@@ -24,7 +25,7 @@ session_start();
     ?>
     <section id="start-message">
         <div class="container">
-            <div class="card style-border text-center mt-5">
+            <div class="bg-white style-border text-center mt-5">
                 <div class="card-body p-md-3">
                     <div class="row justify-content-center">
                         <h1 class="mytext-h1 m-2 p-2">Welcome
@@ -42,23 +43,25 @@ session_start();
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <div class="card style-border mt-3">
-                        <h1 class="mytext-h1 m-2 p-5">Start Shopping</h1>
-                    </div>
+                    <a href="./products.php">
+                        <div id="cartao_1" class="card style-border mt-3">
+                            <h1 class="mytext-h1 m-2 p-5">Start Shopping</h1>
+                        </div>
+                    </a>
                 </div>
                 <div class="col-md-6">
                     <div class="card style-border mt-3">
-                        <h1 class="mytext-h1 m-2 p-5">Last Products</h1>
+                        <h1 class="mytext-h1 m-2 p-5">Your Items</h1>
                     </div>
                 </div>
                 <div class="col-md-8">
                     <div class="card style-border mt-3">
-                        <h1 class="mytext-h1 m-2 p-5">Sell Your Items</h1>
+                        <h1 class="mytext-h1 m-2 p-5">Your Account</h1>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="card style-border mt-3">
-                        <h1 class="mytext-h1 m-2 p-5">Your Account</h1>
+                        <h1 class="mytext-h1 m-2 p-5">Cart</h1>
                     </div>
                 </div>
             </div>

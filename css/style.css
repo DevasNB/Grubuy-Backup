@@ -12,6 +12,12 @@
 }
 
 /****************************************
+  IMPORTS - OUTRAS COISAS
+****************************************/
+
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
+
+/****************************************
   CSS - RESTANTE CSS
 ****************************************/
 
@@ -107,6 +113,12 @@ a.bold {
 }
 
 .btn-danger {
+  box-shadow: 0.325vw 0.325vw 0.325vw rgb(0 0 0 / 20%);
+  border-radius: 0.6rem;
+  margin: 0;
+}
+
+.btn-success {
   box-shadow: 0.325vw 0.325vw 0.325vw rgb(0 0 0 / 20%);
   border-radius: 0.6rem;
   margin: 0;
@@ -241,10 +253,26 @@ a.bold {
   border-radius: 0.5em;
 }
 
+.style-border5 {
+  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 0.5em;
+}
+
 /*cards*/
 .card-image-size {
   width: 100%;
   height: 300px;
+  object-fit: cover;
+}
+
+.card-image-size2 {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+}
+
+.card-image-size3 {
+  width: 100%;
   object-fit: cover;
 }
 
@@ -394,4 +422,29 @@ label.radio input:checked+span {
 
 .cart i {
   margin-right: 10px
+}
+
+/*Cartoes do index*/
+#cartao_1:before {
+  background-image: url(node_modules/bootstrap-icons/icons/blockquote-left.svg);
+}
+
+#cartao_1, #cartao_2, #cartao_3, #cartao_4 {
+  position: relative;
+  overflow: hidden;
+}
+
+#cartao_1:before, #cartao_2:before, #cartao_3:before, #cartao_4:before {
+  content: '';
+  width: 200%;
+  height: 200%;
+  position: absolute;
+  top: -50%;
+  left: -30%;
+  z-index: 4;
+  opacity: 0.4;
+  background-position: center;
+  background-size: 9em;
+  background-repeat: no-repeat;
+  transform: rotate(10deg);
 }
