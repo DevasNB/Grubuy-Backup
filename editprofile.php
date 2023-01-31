@@ -2,10 +2,6 @@
 include 'getlogin.php';
 include './loginscript/dbaccess.php';
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 session_start();
 
 if (isset($_SESSION["user_Name"])) {
@@ -39,7 +35,26 @@ if (isset($_SESSION["user_Name"])) {
         <form action="profilescript/changeprofile.php" method="POST" enctype="multipart/form-data">
             <div class="row">
                 <?php
-                $date = new DateTime($_SESSION["user_Birthday"]);
+
+                class edituser extends Database
+                {
+                    public function pickProduct($userID)
+                    {
+                        $stmt = $this->connect()->prepare('SELECT * FROM users WHERE userID = ?;');
+                        $stmt->execute(array($userID));
+
+                        $euser = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                        return $euser;
+                    }
+                }
+
+                $myuser = new edituser();
+
+                $userID = isset($_SESSION["user_ID"]) ? $_SESSION["user_ID"] : '';
+                $user_edit = $myuser->pickProduct($userID);
+
+                $date = new DateTime($user_edit["userBirthday"]);
                 $result = $date->format('Y-m-d');
 
                 echo '
@@ -48,15 +63,24 @@ if (isset($_SESSION["user_Name"])) {
                     <div class="card style-border4 mb-4 mb-xl-0">
                         <div class="card-header">Profile Picture</div>
                         <div class="card-body text-center">
-                            <!-- Profile picture image-->
-                            <img class="card-img-top card-image-size" src="./uploads/users/'.$_SESSION["user_Image"].'" alt="">
-                            <!-- Profile picture help block-->
-                            <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
-                            <!-- Profile picture upload button -->
-                            <input class="btn btn-primary file-btn" type="file" name="profileimage" accept="image/*">
+                        <!-- Profile picture upload button -->
+                        ';
+
+                        if (empty($user_edit["userImage"])) {
+                            echo '<img class="style-border5 card-img-top card-image-size" src="./imagens/image icons/person_icon.png" alt="null">';
+                        }
+                        else {
+                            echo '<img class="style-border5 card-img-top card-image-size" src="./uploads/users/'.$user_edit["userImage"].'" alt="notnull">';
+                        }
+                            
+                        echo'
+                            <input class="btn btn-primary file-btn mt-3" type="file" name="profileimage" accept="image/*">
                         </div>
                     </div>
-                </div>
+                </div>';
+            
+                
+                echo '
                     <div class="col-xl-8">
                         <!-- Account details card-->
                         <div class="card mb-4 style-border4">
@@ -67,12 +91,12 @@ if (isset($_SESSION["user_Name"])) {
                                     <!-- Form Group (organization name)-->
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="inputOrgName">Web site: </label>
-                                        <input class="form-control" type="url" name="website" placeholder="' .$_SESSION["user_Website"]. '" value="">
+                                        <input class="form-control" type="url" name="website" value="' .$user_edit["userWebsite"]. '">
                                     </div>
                                     <!-- Form Group (location)-->
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="inputLocation">Location: </label>
-                                        <input class="form-control" type="text" name="location" placeholder="' .$_SESSION["user_Location"]. '" value="">
+                                        <input class="form-control" type="text" name="location" value="' .$user_edit["userLocation"]. '">
                                     </div>
                                 </div>
 
@@ -80,18 +104,19 @@ if (isset($_SESSION["user_Name"])) {
                                     <!-- Form Group (phone number)-->
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="inputPhone">Phone number: </label>
-                                        <input class="form-control" type="number" name="phone" maxlength="9" placeholder="' .$_SESSION["user_Phone"]. '" value="">
+                                        <input class="form-control" type="number" name="phone" maxlength="9" value="' .$user_edit["userPhone"]. '">
                                     </div>
                                     <!-- Form Group (birthday)-->
                                     <div class="col-md-6">
                                         <label class="small mb-1" for="inputBirthday">Birthday: </label>
-                                        <input class="form-control" type="date" name="birthday" min="1922-1-1" max="2022-12-31" placeholder="'. $result . '" value="">
+                                        <input class="form-control" type="date" name="birthday" min="1922-1-1" max="2022-12-31" placeholder="'. $result . '" value="'. $result . '">
                                     </div>
                                 </div>
 
                                 <button name="submit" type="submit" class="btn btn-warning">Save Changes</button>
                                 <a href="myaccount.php" name="submit" type="button" class="btn btn-danger ms-2">Back to Profile</a>
 
+                                <p class="text-danger text-center m-2"> * log out of the account and log back in to see updated data *</p>
                             </div>
                         </div>
                     </div>

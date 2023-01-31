@@ -7,6 +7,11 @@ error_reporting(E_ALL);
 
 if (isset($_POST["submit"])) {
 
+    include "../loginscript/dbaccess.php";
+
+    $productedit = new Database();
+    $drena = $productedit->connect();
+
     //data
     $product_name = $_POST["productname"];
     $product_description = $_POST["productdescription"];
@@ -29,21 +34,14 @@ if (isset($_POST["submit"])) {
         header("location: ../myproducts.php?error=fail_to_upload_image");
         exit();
     }
+    
+    $stmt = $drena->prepare('UPDATE products set productName = ?, productDescription = ?, productImage = ?, productQuantity = ?, productPrice = ? WHERE productID = ?;');
+    $stmt->execute(array($product_name, $product_description, $product_image['name'], $product_quantity, $product_price, $product_id));
+    
+    $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-
-    //Instances LoginControlers
-    include "../loginscript/dbaccess.php";
-    include "../edit_delete_productscript/changeproduct.functions.php";
-    include "../edit_delete_productscript/changeproduct.functions.controlers.php";
-
-    //Other variables - like date and creator
-
-    $editproducts = new EditProductsControlers($product_name, $product_description, $user_creator, $product_image['name'], $product_quantity, $product_price, $product_id);
-
-    //running errors and handlers
-    $editproducts->EditProducts();
-
-    //Going to back to front page
     header("location: ../myproducts.php?error=productedited");
 }
 ?>
+
+

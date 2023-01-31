@@ -39,7 +39,7 @@ if (isset($_SESSION["user_Name"])) {
     include 'header.php';
     ?>
     <section class="h-100 h-custom">
-        <div class="container py-5 h-100">
+        <div class="container mt-4 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col">
                     <div class="bg-white style-border4">
@@ -134,7 +134,7 @@ if (isset($_SESSION["user_Name"])) {
                                                     <div class="d-flex justify-content-between">
                                                         <div class="d-flex flex-row align-items-center">
                                                             <div>
-                                                                <img src="../uploads/products/' . $numberproducts[$i]["productImage"] . '" class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
+                                                                <img src="../uploads/products/' . $numberproducts[$i]["productImage"] . '" class="card-img-top card-image-size3 style-border5" alt="Shopping item" style="width: 65px;">
                                                             </div>
                                                             <div class="ms-3">
                                                                 <h5>' . $numberproducts[$i]["productName"] . '</h5>
@@ -149,7 +149,7 @@ if (isset($_SESSION["user_Name"])) {
                                                                 <h5 class="mb-0">' . $numberproducts[$i]["productPrice"] . '</h5>
                                                             </div>
                                                             <form action="../cartscript/deletecart.php" method="POST">
-                                                                <input name="prodID" type="hidden" value="' . $prodID = $numberproducts[$i]['productID']. '" readonly/>
+                                                                <input name="prodID" type="hidden" value="' . $prodID . '" readonly/>
                                                                 <button class="btn btn-danger" name="submit" type="submit"><i class="bi bi-trash-fill"></i></button>
                                                             </form>
                                                         </div>
@@ -163,7 +163,7 @@ if (isset($_SESSION["user_Name"])) {
                                             $final_price += ($numberproducts[$i]["quantity"] * $numberproducts[$i]["productPrice"]) + 1;
 
                                         }
-
+                                    }
                                         echo '
                                             <hr class="my-4">
                                             <div class="d-flex justify-content-between">
@@ -180,17 +180,18 @@ if (isset($_SESSION["user_Name"])) {
                                                 <p class="mb-2">Total(Incl. taxes)</p>
                                                 <p class="mb-2">' . number_format($final_price, 2) . ' €</p>
                                             </div>
-                                            <button type="button" class="btn btn-lg btn-warning">
-                                                <div class="d-flex justify-content-between">
-                                                    <span>Checkout <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
-                                                </div>
-                                            </button>
-                                            ';
-                                    }
+                                            <form action="./cartscript/productsell.php" method="POST" id="product-form">
 
+                                           
+                                                <input type="hidden" name="usrID" value="' . $_SESSION["user_ID"] . '" readonly/>
+
+                                                <button type="submit" name="submit" class="btn btn-lg btn-warning">
+                                                    <div class="d-flex justify-content-between">
+                                                        <span>Checkout <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
+                                                    </div>
+                                                </button>
+                                            </form>';
                                     ?>
-
-
 
                                 </div>
 
@@ -202,7 +203,7 @@ if (isset($_SESSION["user_Name"])) {
             </div>
         </div>
     </section>
-
+    
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 

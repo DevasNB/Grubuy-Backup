@@ -53,7 +53,7 @@ class picmyproducts extends Database
     ?>
 
     <section id="myproducts">
-        <div class="container mt-5 text-center">
+        <div class="container mt-4 text-center">
             <div class="bg-white style-border4">
                 <h1 class="mytext-h1 text-center m-2 p-2">My <span class="text-warning">Products</span></h1>
             </div>
@@ -87,7 +87,7 @@ class picmyproducts extends Database
                             <div class="card style-border4">
                             <img src="/uploads/products/' . $numberproducts[$i]['productImage'] . '" class="card-img-top card-image-size" alt="...">
                               <div class="card-body">
-                                <h5 class="card-title text-primary">' . $numberproducts[$i]['productName'] . '</h5>
+                                <h5 class="card-title text-primary title-1line">' . $numberproducts[$i]['productName'] . '</h5>
                                 <h4 class="badge bg-warning">' . $numberproducts[$i]['productPrice'] . ' €</h4>
                                 <div class="d-flex row align-items-center">
                                     <div class="col-12 mb-2">
@@ -105,7 +105,8 @@ class picmyproducts extends Database
                                     
                                     <div class="col-6">
                                         <form action="./edit_delete_productscript/deleteproduct.php" method="post">
-                                        <button type="submit" name="action" value="delete" class="btn btn-danger btn-size"><i class="bi bi-trash-fill"></i> Delete</button>
+                                        <input name="productID" type="hidden" value="' . $productsID . '" readonly/>
+                                        <button type="submit" name="submit" class="btn btn-danger btn-size"><i class="bi bi-trash-fill"></i> Delete</button>
                                         </form>
                                     </div>
                                 </div>

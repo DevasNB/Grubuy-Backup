@@ -8,11 +8,6 @@ error_reporting(E_ALL);
 
 session_start();
 
-if (isset($_SESSION["user_Name"])) {
-    echo '';
-} else {
-    header("location: ../login.php?error=startyoursession");
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -75,28 +70,37 @@ if (isset($_SESSION["user_Name"])) {
     $username = $creator->pickUser($userID);
     
     echo '
-    <section class="py-5">
-        <div class="container product style-border3 my-5">
-            <form action="./cartscript/getcart.php" method="POST">
-                <div class="row gx-4 gx-lg-5 align-items-center">
-                    <div class="col-md-6">
-                        <img class="card-img-top card-image-size2 style-border5 ms-1 mt-3 mb-3" src="./uploads/products/' . $product_edit['productImage'] . '" alt="..." />
-                    </div>
-                    <div class="col-md-6">
-                        <h4 class="mb-1">Seller: <a href="#">' . $username["userName"] . '</a></h4>
+    <section class="mt-4 ps-2 pe-2">
+        <div class="container product style-border3 mb-3">
+            <div class="col-lg-12 pt-3">
+                <a href="products.php" class="text-black text-uppercase bold ms-3"><i class="bi bi-arrow-left"></i> Continue shopping</a>
+                <hr>  
+            </div>
+            <div class="row gx-4 gx-lg-5 align-items-center">
+                <div class="col-md-6">
+                    <img class="card-img-top card-image-size2 style-border5 mb-3 ms-md-3" src="./uploads/products/' . $product_edit['productImage'] . '" alt="..." />
+                </div>
+                <div class="col-md-6">
+                    <form action="../userpage.php" method="POST">
+                        <input name="userName" type="hidden" value="' . $username["userName"] . '" readonly/>
+                        <h4 class="mb-1">Seller: 
+                            <button class="btn btn-primary mb-1" type="submit" name="submit">' . $username["userName"] . '</button>
+                        </h4>
+                        <h4 class="mb-1">Stock: '.$product_edit["productQuantity"].' <i class="bi bi-box"></i></h4>
+                    </form>
                         <h1 class="display-5 fw-bolder">' . $product_edit["productName"] . '</h1>
-                        <div class="fs-5 mb-5">
-                            <!--<span class="text-decoration-line-through">$45.00</span>-->
+                        <div class="fs-5">
+                            <!--<span class="text-decoration-line-through ps-2 pe-2">$45.00</span>-->
                             <span>' . $product_edit["productPrice"] . ' €</span>
                         </div>
                         <p class="lead">' . $product_edit["productDescription"] . '</p>
                         <div class="d-flex">
-                            <input name="productID" type="hidden" value="' . $productID. '" readonly/>
-                            <input name="productPrice" type="hidden" value="' . $product_edit["productPrice"] . '" readonly/>
-                            <input class="form-control text-center me-3" name="productQuantity" type="num" value="1" max="'. $product_edit["productQuantity"] .'" style="max-width: 3rem" />
-                                
-                            <button class="btn btn-warning me-3" name="submit" type="submit">Add to Cart</button>
-                            <a href="./products.php" class="btn btn-danger">Go Back</a>
+                            <form action="./cartscript/getcart.php" method="POST">
+                                <input name="productID" type="hidden" value="' . $productID. '" readonly/>
+                                <input name="productPrice" type="hidden" value="' . $product_edit["productPrice"] . '" readonly/>
+                                <input class="form-control text-center me-3" name="productQuantity" type="num" value="1" max="'. $product_edit["productQuantity"] .'" style="max-width: 6.6rem" />           
+                                <button class="btn btn-warning mt-3 mb-3" name="submit" type="submit">Add to Cart</button>
+                            </form>
                         </div>
                     </div>
                 </div>

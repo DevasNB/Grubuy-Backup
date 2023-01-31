@@ -55,15 +55,6 @@
               </div>
             </div>
 
-            <div class="d-flex justify-content-between align-items-center">
-              <!-- Checkbox -->
-              <div class="form-check mb-0">
-                <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
-                <label class="form-check-label mytext2" for="form2Example3">Remember me</label>
-              </div>
-              <a href="forgot_pass.php" class="mytext2 text-body">Forgot password?</a>
-            </div>
-
             <div class="text-center text-lg-start mt-3">
               <button type="submit" name="submit" class="btn btn-primary btn-lg">Login</button>
               <p class="mytext2 small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="register.php" class="mytext2 animate link-danger">Register</a></p>

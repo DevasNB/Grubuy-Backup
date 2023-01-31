@@ -18,7 +18,7 @@ if (isset($_SESSION["user_Name"])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Grubuy - Creating Product</title>
+    <title>Grubuy - Editing Product</title>
 
     <link rel="shortcut icon" type="image/x-icon" href="/imagens/grubuy5.png" />
 
@@ -49,20 +49,6 @@ if (isset($_SESSION["user_Name"])) {
                     }
                 }
 
-                /*function teste($productID)
-                {
-                    global $conn;
-
-
-                    $sql = "SELECT * FROM products WHERE productID = $productID";
-                    $result = $conn->query($sql);
-
-                    return $result;
-                }
-
-                var_dump(teste(1));
-                die;*/
-
                 $myproduct = new editmyproduct();
 
                 $productID = isset($_POST['productID']) ? $_POST['productID'] : '';
@@ -76,11 +62,9 @@ if (isset($_SESSION["user_Name"])) {
                         <div class="card-header">Product Picture</div>
                         <div class="card-body text-center">
                             <!-- Profile picture image-->
-                            <img class="card-img-top card-image-size3" src="/uploads/products/' . $product_edit['productImage'] . '" alt="">
-                            <!-- Profile picture help block-->
-                            <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
+                            <img class="style-border5 card-img-top card-image-size" src="/uploads/products/' . $product_edit['productImage'] . '" alt="product image">
                             <!-- Profile picture upload button -->
-                            <input class="btn btn-primary file-btn" type="file" name="productimage" accept="image/*">
+                            <input class="btn btn-primary file-btn mt-3" type="file" name="productimage" accept="image/*">
                         </div>
                     </div>
                 </div>
@@ -111,7 +95,10 @@ if (isset($_SESSION["user_Name"])) {
                                                     <input class="form-control" name="productquantity" value="' . $product_edit['productQuantity'] . '" type="number">
                                                 </div>
                                             </div>
-                                            <button class="btn btn-warning" type="submit" name="submit">Send Product</button>
+                                            <button name="submit" type="submit" class="btn btn-warning">Save Changes</button>
+                                            <a href="myproducts.php" class="btn btn-danger ms-2">Back to My Products</a>
+
+                                            <p class="text-danger text-center m-2"> * log out of the account and log back in to see updated data *</p>
                                         </div>
                                     </div>
                                 </div>

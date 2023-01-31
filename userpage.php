@@ -1,13 +1,5 @@
 <?php
-include 'getlogin.php';
-include './loginscript/dbaccess.php';
-
 session_start();
-if (isset($_SESSION["user_Name"])) {
-    echo '';
-} else {
-    header("location: ../login.php?error=startyoursession");
-}
 
 ?>
 <!DOCTYPE html>
@@ -18,7 +10,7 @@ if (isset($_SESSION["user_Name"])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Grubuy - My Account</title>
+    <title>Grubuy - User Page</title>
 
     <link rel="shortcut icon" type="image/x-icon" href="/imagens/grubuy5.png" />
 
@@ -35,26 +27,22 @@ if (isset($_SESSION["user_Name"])) {
         <div class="row">
             <?php
 
-            class user extends Database
-            {
-                public function pickProduct($userID)
-                {
-                    $stmt = $this->connect()->prepare('SELECT * FROM users WHERE userID = ?;');
-                    $stmt->execute(array($userID));
+            if (isset($_POST["submit"])) {
 
-                    $euser = $stmt->fetch(PDO::FETCH_ASSOC);
+                include './loginscript/dbaccess.php';
 
-                    return $euser;
-                }
-            }
+                $productincart = new Database();
+                $drena = $productincart->connect();
 
-            $myuser = new user();
+                $userName = $_POST['userName'];
 
-            $userID = $_SESSION["user_ID"];
-            $user_edit = $myuser->pickProduct($userID);
+                $stmt = $drena->prepare('SELECT * FROM users WHERE userName = ?;');
+                $stmt->execute(array($userName));
 
-            $date = new DateTime($user_edit["userBirthday"]);
-            $result = $date->format('Y-m-d');
+                $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                $date = new DateTime($user["userBirthday"]);
+                $result = $date->format('Y-m-d');
 
             echo '
             <div class="col-xl-4">
@@ -64,14 +52,13 @@ if (isset($_SESSION["user_Name"])) {
                     <div class="card-body text-center">
                         <!-- Profile picture image-->';
                         
-                        if (empty($user_edit["userImage"])) {
+                        if (empty($user["userImage"])) {
                             echo '<img class="style-border5 card-img-top card-image-size3" src="./imagens/image icons/person_icon.png" alt="null">';
                         }
                         else {
-                            echo '<img class="style-border5 card-img-top card-image-size" src="./uploads/users/'.$user_edit["userImage"].'" alt="notnull">';
+                            echo '<img class="style-border5 card-img-top card-image-size" src="./uploads/users/'.$user["userImage"].'" alt="notnull">';
                         }
-                        
-                    echo '
+                        echo '
                     </div>
                 </div>
             </div>
@@ -83,23 +70,23 @@ if (isset($_SESSION["user_Name"])) {
                         <!-- Form Group (username)-->
                         <div class="mb-3">
                                         <label class="small mb-1 bold" for="inputUsername">Your name: </label>
-                                        <input class="form-control" type="text" placeholder="' . $user_edit["userName"] . '" disabled>
+                                        <input class="form-control" type="text" placeholder="' .$user["userName"] . '" disabled>
                                     </div>
                                     <div class="mb-3">
                                         <label class="small mb-1 bold" for="inputEmailAddress">Email address: </label>
-                                        <input class="form-control" id="inputEmailAddress" type="email" placeholder="' .$user_edit["userEmail"] . '" disabled>
+                                        <input class="form-control" id="inputEmailAddress" type="email" placeholder="' . $user["userEmail"] . '" disabled>
                                     </div>
                                     
                                     <div class="row gx-3 mb-3">
                                         <!-- Form Group (organization name)-->
                                         <div class="col-md-6">
                                             <label class="small mb-1" for="inputOrgName">Web site: </label>
-                                            <input class="form-control" id="inputOrgName" type="text" placeholder="' . $user_edit["userWebsite"] . '" disabled>
+                                            <input class="form-control" id="inputOrgName" type="text" placeholder="' .$user["userWebsite"] . '" disabled>
                                         </div>
                                         <!-- Form Group (location)-->
                                         <div class="col-md-6">
                                             <label class="small mb-1" for="inputLocation">Location: </label>
-                                            <input class="form-control" id="inputLocation" type="text" placeholder="' . $user_edit["userLocation"] . '" disabled>
+                                            <input class="form-control" id="inputLocation" type="text" placeholder="' . $user["userLocation"] . '" disabled>
                                         </div>
                                     </div>
                         
@@ -107,15 +94,15 @@ if (isset($_SESSION["user_Name"])) {
                                         <!-- Form Group (phone number)-->
                                         <div class="col-md-6">
                                             <label class="small mb-1" for="inputPhone">Phone number: </label>
-                                            <input class="form-control" id="inputPhone" placeholder="' . $user_edit["userPhone"] . '" disabled>
+                                            <input class="form-control" id="inputPhone" placeholder="' . $user["userPhone"] . '" disabled>
                                         </div>
                                         <!-- Form Group (birthday)-->
                                         <div class="col-md-6">
                                             <label class="small mb-1" for="inputBirthday">Birthday: </label>
                                             <input class="form-control" id="inputBirthday" type="text" name="birthday" placeholder="' . $result . '" disabled>
                                         </div>
-                                    </div>
-                                    <a href="../editprofile.php" class="btn btn-warning" type="button">Edit profile</a>';
+                                    </div>';
+                    }
             ?>
         </div>
     </div>

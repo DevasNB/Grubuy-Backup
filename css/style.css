@@ -73,6 +73,11 @@ a:hover{
   color: #202f41;
 }
 
+.text-black:hover {
+  color: #e0a800;
+}
+
+
 a.bold {
   font-weight: bold;
 }
@@ -330,6 +335,7 @@ a.bold {
 a {
   font-size: 14px;
   font-family: "Roboto-Regular" !important;
+  color:#ffc107;
 }
 
 .superNav {
@@ -349,7 +355,7 @@ a {
 
 /* CAROUSEL */
 .carousel-control-prev {
-  color: rgb(255, 239, 0);
+  color: #f0ad4e;
 }
 
 /*PRDUCT PAGE*/
@@ -426,7 +432,16 @@ label.radio input:checked+span {
 
 /*Cartoes do index*/
 #cartao_1:before {
-  background-image: url(node_modules/bootstrap-icons/icons/blockquote-left.svg);
+  background-image: url(/imagens/icons/basket2-fill.svg);
+}
+#cartao_2:before {
+  background-image: url(/imagens/icons/box-seam-fill.svg);
+}
+#cartao_3:before {
+  background-image: url(/imagens/icons/person-fill.svg);
+}
+#cartao_4:before {
+  background-image: url(/imagens/icons/cart3.svg);
 }
 
 #cartao_1, #cartao_2, #cartao_3, #cartao_4 {
@@ -440,11 +455,24 @@ label.radio input:checked+span {
   height: 200%;
   position: absolute;
   top: -50%;
-  left: -30%;
-  z-index: 4;
-  opacity: 0.4;
+  left: -20%;
+  z-index: 0;
+  opacity: 1;
   background-position: center;
   background-size: 9em;
   background-repeat: no-repeat;
   transform: rotate(10deg);
+}
+
+.description-3line {
+  display: -webkit-box; 
+  -webkit-line-clamp: 3; 
+  -webkit-box-orient: vertical; 
+  overflow: hidden;
+}
+
+.title-1line {
+  text-overflow: ellipsis; 
+  white-space: nowrap; 
+  overflow: hidden;
 }

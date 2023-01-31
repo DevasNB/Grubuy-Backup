@@ -25,7 +25,7 @@ session_start();
     ?>
     <section id="start-message">
         <div class="container">
-            <div class="bg-white style-border text-center mt-5">
+            <div class="bg-white style-border text-center mt-4">
                 <div class="card-body p-md-3">
                     <div class="row justify-content-center">
                         <h1 class="mytext-h1 m-2 p-2">Welcome
@@ -50,19 +50,25 @@ session_start();
                     </a>
                 </div>
                 <div class="col-md-6">
-                    <div class="card style-border mt-3">
-                        <h1 class="mytext-h1 m-2 p-5">Your Items</h1>
-                    </div>
+                    <a href="./myproducts.php">
+                        <div id="cartao_2" class="card style-border mt-3">
+                            <h1 class="mytext-h1 m-2 p-5">Your Items</h1>
+                        </div>
+                    </a>
                 </div>
                 <div class="col-md-8">
-                    <div class="card style-border mt-3">
-                        <h1 class="mytext-h1 m-2 p-5">Your Account</h1>
-                    </div>
+                    <a href="./myaccount.php">
+                        <div id="cartao_3" class="card style-border mt-3">
+                            <h1 class="mytext-h1 m-2 p-5">Your Account</h1>
+                        </div>
+                    </a>
                 </div>
                 <div class="col-md-4">
-                    <div class="card style-border mt-3">
-                        <h1 class="mytext-h1 m-2 p-5">Cart</h1>
-                    </div>
+                    <a href="./mycart.php">
+                        <div id="cartao_4" class="card style-border mt-3">
+                            <h1 class="mytext-h1 m-2 p-5">Cart</h1>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
